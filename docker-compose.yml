@@ -1,0 +1,48 @@
+version: '3'
+services:
+  mysql:
+    container_name: gradlemall_db
+    image: mysql:8.0.21
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: gradlemall
+      MYSQL_USER: jiyongd
+      MYSQL_PASSWORD: '1234'
+      MYSQL_HOST: gradlemall
+    volumes: 
+      - db-data:/var/lib/mysql
+      - ./db_init/:/docker-entrypoint-initdb.d/
+    ports:
+      - 3307:3306
+
+
+  gradlemall-api:
+    container_name: gradlemall_api
+    image: openjdk:11
+    volumes:
+      - ../gradleApi:/api/gradleApi
+    ports:
+      - 8080:8080
+    depends_on:
+      - mysql
+    command: bash -c "cd /api/gradleApi && ./gradlew bootRun"
+
+
+  gradlemall-front:
+    container_name: gradlemall_front
+    build:
+      context: .
+      dockerfile: DockerfileFront
+    volumes:
+      - ../gradleFront:/web/gradleFront
+    ports:
+      - 3000:3000
+    command: /bin/sh -c "cd /web/gradleFront && yarn install && yarn dev"
+    healthcheck:
+      test: curl -sS http://localhost:8080 || exit 1
+      timeout: 10s
+      retries: 10
+
+
+volumes:
+  db-data:
