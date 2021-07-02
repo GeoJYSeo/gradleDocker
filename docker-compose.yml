@@ -15,29 +15,29 @@ services:
     ports:
       - 3307:3306
 
-  gradlemall-api:
-    container_name: gradlemall_api
+  gradlemall-admin-api:
+    container_name: gradlemall_admin_api
     image: openjdk:11
     volumes:
-      - ../gradleApi:/api/gradleApi
+      - ../gradleAdminApi:/api/gradleAdminApi
       - ../uploadedImages:/api/uploadedImages
     ports:
       - 8080:8080
     depends_on:
       - mysql
-    command: /bin/sh -c "cd /api/gradleApi && SPRING_PROFILES_ACTIVE=docker ./gradlew bootRun"
+    command: /bin/sh -c "cd /api/gradleAdminApi && SPRING_PROFILES_ACTIVE=docker ./gradlew bootRun"
 
-  gradlemall-front:
-    container_name: gradlemall_front
+  gradlemall-admin-front:
+    container_name: gradlemall_admin_front
     build:
       context: .
       dockerfile: DockerfileFront
     volumes:
-      - ../gradleFront:/web/gradleFront
+      - ../gradleAdminFront:/web/gradleAdminFront
       - ../uploadedImages:/web/uploadedImages
     ports:
       - 3000:3000
-    command: /bin/sh -c "cd /web/gradleFront && yarn install && yarn dev"
+    command: /bin/sh -c "cd /web/gradleAdminFront && yarn install && yarn dev"
     healthcheck:
       test: curl -sS http://localhost:8080 || exit 1
       timeout: 10s
