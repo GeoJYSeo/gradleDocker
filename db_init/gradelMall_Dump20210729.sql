@@ -35,7 +35,7 @@ CREATE TABLE `cart` (
   KEY `fk_cart_goods1_idx` (`goods_id`),
   CONSTRAINT `fk_cart_goods1` FOREIGN KEY (`goods_id`) REFERENCES `goods` (`id`),
   CONSTRAINT `fk_cart_user1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -53,7 +53,7 @@ CREATE TABLE `category` (
   `reg_date` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `cate_code_UNIQUE` (`cate_code`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -98,7 +98,7 @@ CREATE TABLE `goods` (
   PRIMARY KEY (`id`),
   KEY `fk_goods_category1_idx` (`category_id`),
   CONSTRAINT `fk_goods_category1` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -122,7 +122,31 @@ CREATE TABLE `goods_image` (
   PRIMARY KEY (`id`),
   KEY `fk_goods_image_goods1_idx` (`goods_id`),
   CONSTRAINT `fk_goods_image_goods1` FOREIGN KEY (`goods_id`) REFERENCES `goods` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `goods_key`
+--
+
+DROP TABLE IF EXISTS `goods_key`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `goods_key` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `reg_key` varchar(100) NOT NULL,
+  `goods_name` varchar(50) NOT NULL,
+  `status` varchar(20) NOT NULL,
+  `reg_date` datetime NOT NULL,
+  `up_date` datetime DEFAULT NULL,
+  `user_id` bigint NOT NULL,
+  `order_detail_id` bigint NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_goods_key_user1_idx` (`user_id`),
+  KEY `fk_goods_key_order_detail1_idx` (`order_detail_id`),
+  CONSTRAINT `fk_goods_key_order_detail1` FOREIGN KEY (`order_detail_id`) REFERENCES `order_detail` (`id`),
+  CONSTRAINT `fk_goods_key_user1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -135,16 +159,16 @@ DROP TABLE IF EXISTS `order_detail`;
 CREATE TABLE `order_detail` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `goods_quantity` int NOT NULL,
-  `goods_total_price` int DEFAULT NULL,
-  `reg_date` datetime DEFAULT NULL,
-  `order_group_id` bigint DEFAULT NULL,
-  `goods_id` bigint DEFAULT NULL,
+  `goods_total_price` int NOT NULL,
+  `reg_date` datetime NOT NULL,
+  `order_group_id` bigint NOT NULL,
+  `goods_id` bigint NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_order_detail_order1_idx` (`order_group_id`),
   KEY `fk_order_detail_goods1_idx` (`goods_id`),
   CONSTRAINT `fk_order_detail_goods1` FOREIGN KEY (`goods_id`) REFERENCES `goods` (`id`),
   CONSTRAINT `fk_order_detail_order1` FOREIGN KEY (`order_group_id`) REFERENCES `order_group` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -174,7 +198,7 @@ CREATE TABLE `order_group` (
   UNIQUE KEY `orderNum_UNIQUE` (`order_num`),
   KEY `fk_order_user1_idx` (`user_id`),
   CONSTRAINT `fk_order_user1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -196,6 +220,7 @@ CREATE TABLE `user` (
   `user_addr2` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
   `user_addr3` varchar(50) COLLATE utf8mb4_bin DEFAULT NULL,
   `phone_num` varchar(20) COLLATE utf8mb4_bin NOT NULL,
+  `status` varchar(20) COLLATE utf8mb4_bin NOT NULL,
   `access` varchar(20) COLLATE utf8mb4_bin NOT NULL,
   `last_login_at` datetime DEFAULT NULL,
   `reg_date` datetime NOT NULL,
@@ -214,4 +239,4 @@ CREATE TABLE `user` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-07-22  4:20:00
+-- Dump completed on 2021-07-29 19:55:30
