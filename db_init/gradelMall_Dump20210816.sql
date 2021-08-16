@@ -35,8 +35,17 @@ CREATE TABLE `cart` (
   KEY `fk_cart_goods1_idx` (`goods_id`),
   CONSTRAINT `fk_cart_goods1` FOREIGN KEY (`goods_id`) REFERENCES `goods` (`id`),
   CONSTRAINT `fk_cart_user1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `cart`
+--
+
+LOCK TABLES `cart` WRITE;
+/*!40000 ALTER TABLE `cart` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cart` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `category`
@@ -53,8 +62,18 @@ CREATE TABLE `category` (
   `reg_date` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `cate_code_UNIQUE` (`cate_code`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `category`
+--
+
+LOCK TABLES `category` WRITE;
+/*!40000 ALTER TABLE `category` DISABLE KEYS */;
+INSERT INTO `category` VALUES (1,'N/A','N/A','N/A','2020-12-20 02:44:51'),(2,'ACTION','200','200','2020-12-27 01:32:04'),(3,'ARCADE','300','300','2020-12-27 01:32:16'),(4,'ACTION_1','201','200','2020-12-27 01:32:42'),(5,'ACTION_2','202','200','2020-12-27 01:32:54'),(6,'ARCADE_1','301','300','2020-12-27 01:33:09'),(7,'RPG','100','100','2021-01-26 03:38:43'),(8,'BOARD','400','400','2021-01-26 03:38:43'),(9,'FPS','500','500','2021-01-26 03:38:43'),(10,'PUZZLE','600','600','2021-01-26 03:38:43'),(11,'RACING','700','700','2021-01-26 03:38:43'),(12,'SPORTS','800','800','2021-01-26 03:38:43');
+/*!40000 ALTER TABLE `category` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `comment`
@@ -79,6 +98,15 @@ CREATE TABLE `comment` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `comment`
+--
+
+LOCK TABLES `comment` WRITE;
+/*!40000 ALTER TABLE `comment` DISABLE KEYS */;
+/*!40000 ALTER TABLE `comment` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `goods`
 --
 
@@ -98,8 +126,17 @@ CREATE TABLE `goods` (
   PRIMARY KEY (`id`),
   KEY `fk_goods_category1_idx` (`category_id`),
   CONSTRAINT `fk_goods_category1` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `goods`
+--
+
+LOCK TABLES `goods` WRITE;
+/*!40000 ALTER TABLE `goods` DISABLE KEYS */;
+/*!40000 ALTER TABLE `goods` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `goods_image`
@@ -122,8 +159,17 @@ CREATE TABLE `goods_image` (
   PRIMARY KEY (`id`),
   KEY `fk_goods_image_goods1_idx` (`goods_id`),
   CONSTRAINT `fk_goods_image_goods1` FOREIGN KEY (`goods_id`) REFERENCES `goods` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `goods_image`
+--
+
+LOCK TABLES `goods_image` WRITE;
+/*!40000 ALTER TABLE `goods_image` DISABLE KEYS */;
+/*!40000 ALTER TABLE `goods_image` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `goods_key`
@@ -146,8 +192,17 @@ CREATE TABLE `goods_key` (
   KEY `fk_goods_key_order_detail1_idx` (`order_detail_id`),
   CONSTRAINT `fk_goods_key_order_detail1` FOREIGN KEY (`order_detail_id`) REFERENCES `order_detail` (`id`),
   CONSTRAINT `fk_goods_key_user1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `goods_key`
+--
+
+LOCK TABLES `goods_key` WRITE;
+/*!40000 ALTER TABLE `goods_key` DISABLE KEYS */;
+/*!40000 ALTER TABLE `goods_key` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `order_detail`
@@ -168,8 +223,17 @@ CREATE TABLE `order_detail` (
   KEY `fk_order_detail_goods1_idx` (`goods_id`),
   CONSTRAINT `fk_order_detail_goods1` FOREIGN KEY (`goods_id`) REFERENCES `goods` (`id`),
   CONSTRAINT `fk_order_detail_order1` FOREIGN KEY (`order_group_id`) REFERENCES `order_group` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `order_detail`
+--
+
+LOCK TABLES `order_detail` WRITE;
+/*!40000 ALTER TABLE `order_detail` DISABLE KEYS */;
+/*!40000 ALTER TABLE `order_detail` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `order_group`
@@ -198,8 +262,17 @@ CREATE TABLE `order_group` (
   UNIQUE KEY `orderNum_UNIQUE` (`order_num`),
   KEY `fk_order_user1_idx` (`user_id`),
   CONSTRAINT `fk_order_user1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `order_group`
+--
+
+LOCK TABLES `order_group` WRITE;
+/*!40000 ALTER TABLE `order_group` DISABLE KEYS */;
+/*!40000 ALTER TABLE `order_group` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `user`
@@ -227,8 +300,18 @@ CREATE TABLE `user` (
   `up_date` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_id_UNIQUE` (`user_email`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user`
+--
+
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES (1,'admin@gmail.com','$2a$10$.WPHaOiWFKVF4hXzbHNx/Oxao.MurvgfIU4YYa.a5ggE5zahfPW7y','test','admin','1989/December/3','0012578','NSW','Sydney','building 305','08012345678','ACTIVATED','ADMINISTRATOR','2021-08-16 22:39:11','2021-08-15 23:10:39','2021-08-16 01:46:32'),(2,'manager@gmail.com','$2a$10$y0IEPZDCjnDhN2kCZBkeyuGw43uqnENxie0azFGNCdGV.gpNrrR9K','test','manager','2004/May/6','0125487','QLD','Ayr','street 102','08098746512','ACTIVATED','MANAGER',NULL,'2021-08-16 02:22:04','2021-08-16 02:22:04'),(3,'member@gmail.com','$2a$10$ZBwKmFGCABW3TS66qodeBOhhryk7TPpopQvQLEchmgdmgD87UVEJO','test','member','1994/March/18','0235479','SA','ADELIDE','unit 302','09074562146','ACTIVATED','MEMBER',NULL,'2021-08-16 02:23:52','2021-08-16 02:23:52');
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -239,4 +322,4 @@ CREATE TABLE `user` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-07-29 19:55:30
+-- Dump completed on 2021-08-16 22:40:46
