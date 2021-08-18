@@ -117,7 +117,7 @@ CREATE TABLE `goods` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `gds_name` varchar(50) COLLATE utf8mb4_bin NOT NULL,
   `cate_code` varchar(30) COLLATE utf8mb4_bin NOT NULL,
-  `gds_price` decimal(12,4) NOT NULL,
+  `gds_price` decimal(24,4) NOT NULL,
   `gds_stock` int NOT NULL,
   `gds_desc` text COLLATE utf8mb4_bin NOT NULL,
   `reg_date` datetime NOT NULL,
@@ -159,7 +159,7 @@ CREATE TABLE `goods_image` (
   PRIMARY KEY (`id`),
   KEY `fk_goods_image_goods1_idx` (`goods_id`),
   CONSTRAINT `fk_goods_image_goods1` FOREIGN KEY (`goods_id`) REFERENCES `goods` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -168,6 +168,7 @@ CREATE TABLE `goods_image` (
 
 LOCK TABLES `goods_image` WRITE;
 /*!40000 ALTER TABLE `goods_image` DISABLE KEYS */;
+INSERT INTO `goods_image` VALUES (1,'5d987057-d8a6-41ff-8cf5-d8e55bfed8ec_1629309225','Assassin.jpg',NULL,NULL,99198,0,'2021-08-19 02:53:47','2021-08-19 02:53:47',1),(2,'1664093c-28c1-4962-8479-6b6b98c7197f_1629309226','assassins.jpg',NULL,NULL,184975,0,'2021-08-19 02:53:47','2021-08-19 02:53:47',1),(3,'130419d9-d4ff-4cc0-93de-0483f16f79b9_1629309227','BatmanArkham.png',NULL,NULL,981907,0,'2021-08-19 02:53:48','2021-08-19 02:53:48',1);
 /*!40000 ALTER TABLE `goods_image` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -214,7 +215,7 @@ DROP TABLE IF EXISTS `order_detail`;
 CREATE TABLE `order_detail` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `goods_quantity` int NOT NULL,
-  `goods_total_price` int NOT NULL,
+  `goods_total_price` decimal(24,4) NOT NULL,
   `reg_date` datetime NOT NULL,
   `order_group_id` bigint NOT NULL,
   `goods_id` bigint NOT NULL,
@@ -251,7 +252,7 @@ CREATE TABLE `order_group` (
   `user_addr2` varchar(50) COLLATE utf8mb4_bin NOT NULL,
   `user_addr3` varchar(50) COLLATE utf8mb4_bin NOT NULL,
   `phone_num` varchar(20) COLLATE utf8mb4_bin NOT NULL,
-  `total_price` decimal(12,4) NOT NULL,
+  `total_price` decimal(24,4) NOT NULL,
   `total_quantity` int NOT NULL,
   `payment_type` varchar(50) COLLATE utf8mb4_bin NOT NULL,
   `order_status` varchar(20) COLLATE utf8mb4_bin NOT NULL,
@@ -309,7 +310,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'admin@gmail.com','$2a$10$.WPHaOiWFKVF4hXzbHNx/Oxao.MurvgfIU4YYa.a5ggE5zahfPW7y','test','admin','1989/December/3','0012578','NSW','Sydney','building 305','08012345678','ACTIVATED','ADMINISTRATOR','2021-08-16 22:39:11','2021-08-15 23:10:39','2021-08-16 01:46:32'),(2,'manager@gmail.com','$2a$10$y0IEPZDCjnDhN2kCZBkeyuGw43uqnENxie0azFGNCdGV.gpNrrR9K','test','manager','2004/May/6','0125487','QLD','Ayr','street 102','08098746512','ACTIVATED','MANAGER',NULL,'2021-08-16 02:22:04','2021-08-16 02:22:04'),(3,'member@gmail.com','$2a$10$ZBwKmFGCABW3TS66qodeBOhhryk7TPpopQvQLEchmgdmgD87UVEJO','test','member','1994/March/18','0235479','SA','ADELIDE','unit 302','09074562146','ACTIVATED','MEMBER',NULL,'2021-08-16 02:23:52','2021-08-16 02:23:52');
+INSERT INTO `user` VALUES (1,'admin@gmail.com','$2a$10$.WPHaOiWFKVF4hXzbHNx/Oxao.MurvgfIU4YYa.a5ggE5zahfPW7y','test','admin','1989/December/3','0012578','NSW','Sydney','building 305','08012345678','ACTIVATED','ADMINISTRATOR','2021-08-18 23:44:47','2021-08-15 23:10:39','2021-08-16 01:46:32'),(2,'manager@gmail.com','$2a$10$y0IEPZDCjnDhN2kCZBkeyuGw43uqnENxie0azFGNCdGV.gpNrrR9K','test','manager','2004/May/6','0125487','QLD','Ayr','street 102','08098746512','ACTIVATED','MANAGER',NULL,'2021-08-16 02:22:04','2021-08-16 02:22:04'),(3,'member@gmail.com','$2a$10$ZBwKmFGCABW3TS66qodeBOhhryk7TPpopQvQLEchmgdmgD87UVEJO','test','member','1994/March/18','0235479','SA','ADELIDE','unit 302','09074562146','ACTIVATED','MEMBER',NULL,'2021-08-16 02:23:52','2021-08-16 02:23:52');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -322,4 +323,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-08-16 22:40:46
+-- Dump completed on 2021-08-19  3:00:32
